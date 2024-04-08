@@ -5,13 +5,13 @@ library(tidyverse)
 
 # How to read_csv:
 
-# 1. Set your working directory. For me, I put the two excel sheets in a folder
-# called "Global Change Science- R coding". This is the code:
+# 1. Set your working directory. For me, I put the two excel sheets in a folder called "Global Change Science- R coding". 
+# This is the code:
 
 setwd("C:/Users/Hannah/Desktop/Global Change Science- R coding")
 getwd()
 
-# 2. Make sure to save excel sheets as CSV files.
+# 2. Make sure to save excel sheets as CSV files. I uploaded the two csv files to the github thingy.
 
 # 3. Create objects (ipeds and ebird):
 
