@@ -1,1 +1,5 @@
 # hey guys!
+ebird<-read.csv("C:/Users/camer/Documents/R-Studio_Work/EBbird_IPEDS_UNITID_MEPANCFL_Jan23-May23_v3.csv")
+
+
+
