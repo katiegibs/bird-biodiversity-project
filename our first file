@@ -1,5 +1,17 @@
-# hey guys!
-ebird<-read.csv("C:/Users/camer/Documents/R-Studio_Work/EBbird_IPEDS_UNITID_MEPANCFL_Jan23-May23_v3.csv")
+ # The code below may or may not work due to the file or whatever. But the overall skeleton of the 
+# should work. 
+
+
+
+ebird <- read.csv("C:/Users/camer/Documents/R-Studio_Work/EBbird_IPEDS_UNITID_MEPANCFL_Jan23-May23_v3.csv")
+
+
+ipeds <- read.csv("C:/Users/camer/Documents/R-Studio_Work/IPEDS_combined_MEPANCFL_v4.csv")
+
+
+ipeds_join <- left_join(ebird, ipeds, by = "UNITID")
+
+view(ipeds_join)
 
 
 
