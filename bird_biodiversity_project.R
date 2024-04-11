@@ -23,3 +23,13 @@ species_richness <-
 
 view(species_richness)
 
+# Try this code to see if this answers the question about exploring the relationship between species richness and impervious surfaces. - Hannah
+# Not sure if it does tbh:
+ipeds_join |> 
+  ggplot(aes(x = species_richness, y = mean_impervious)) +
+  geom_point(aes(color = UNITID)) +
+  labs(
+    title = " The Relationship between Species richness and  Impervious Surface",
+    x = "Mean of Impervious Surfaces", 
+    y = "Species Richness"
+  )
