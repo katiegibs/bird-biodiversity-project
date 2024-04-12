@@ -19,7 +19,7 @@ View(ebird)
 species_richness <-
   ebird |>
   group_by(UNITID) |> 
-  mutate(species_richness = n_distinct(`SAMPLING EVENT IDENTIFIER`))
+  mutate(species_richness = n_distinct(`SCIENTIFIC NAME`))
 
 # Joining datasets:
 ipeds_join <- left_join(species_richness, ipeds, by = "UNITID")
