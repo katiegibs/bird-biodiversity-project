@@ -34,3 +34,25 @@ Removed 36648 rows containing missing values (`geom_point()`).
          x = "Mean of Impervious Surfaces", 
         y = "Species Richness"
      )
+
+# This should be the new graph for question 4:
+
+# Evaluating the relationship between Species Richness vs. Impervious Surface:
+
+ipeds_join |> 
+  group_by(UNITID) |> 
+  ggplot(aes(x = species_richness, y = mean_impervious)) +
+  geom_point(aes(color = species_richness)) +
+  geom_smooth() +
+  labs(
+    title = " The Relationship between Species richness and Impervious Surface",
+    x = "Species Richness", 
+    y = "Impervious Surfaces", 
+    caption = "Data is from IPEDS and Ebird"
+  )
+
+# Our hypothesis is that species richness will decrease if there is an increase in impervious surfaces.
+# From the plot shown, there is a correlation between Species Richness and Impervious Surfaces. 
+# This shows that when there are high impervious surfaces, there is low species richness. However,
+# when there are low averages for impervious surfaces, there is a high species richness. This shows that
+# species richness is affected by impervious surfaces, and that our hypothesis was correct. 
