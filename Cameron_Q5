@@ -1,0 +1,35 @@
+time_data <- ipeds_join |>
+  select(TIME.OBSERVATIONS.STARTED, OBSERVATION.COUNT, OBSERVATION.DATE, ORDER, COMMON.NAME)
+
+# I converted the military times.
+time_data$TIME.OBSERVATIONS.STARTED <- as.POSIXct(time_data$TIME.OBSERVATIONS.STARTED, format = "%H:%M:%S")
+# And I extracted the hour from it. 
+time_data$hour <- strftime(time_data$TIME.OBSERVATIONS.STARTED, "%H")
+# I then replaced the "X"s with NAs. 
+time_data$OBSERVATION.COUNT[time_data$OBSERVATION.COUNT == "X"] <- NA 
+# I converted the OBSERVATION.COUNT column to numeric. 
+time_data$OBSERVATION.COUNT <- as.numeric(time_data$OBSERVATION.COUNT)
+
+
+
+# Visualizing total number of counts for each hour of the day.
+time_data |>
+  group_by(hour) |>
+  mutate(sum_observations = sum(OBSERVATION.COUNT, na.rm = TRUE)) |>
+  ggplot(aes(x = hour, y = sum_observations)) +
+  geom_bar(stat = "identity") 
+
+# Selecting the top 3 most common taxonomic orders within the dataset.
+
+order_summary <- time_data |>
+  group_by(ORDER, hour) |>
+  summarise(tot_order_observations_hour = sum(OBSERVATION.COUNT, na.rm = TRUE)) |>
+  ungroup()
+# Visualizing the top 3 most common taxomic orders.
+order_summary |>
+  group_by(ORDER) |>
+  mutate(total_order_counts = sum(tot_order_observations_hour, na.rm = TRUE)) |>
+  arrange(desc(total_order_counts)) |>
+  filter(ORDER %in% c("Passeriformes", "Anseriformes", "Columbiformes")) |>
+  ggplot(aes(x = hour, y = tot_order_observations_hour, fill = ORDER)) +
+  geom_bar(stat = "identity", position = "stack")
