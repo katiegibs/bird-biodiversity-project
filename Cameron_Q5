@@ -33,3 +33,16 @@ order_summary |>
   filter(ORDER %in% c("Passeriformes", "Anseriformes", "Columbiformes")) |>
   ggplot(aes(x = hour, y = tot_order_observations_hour, fill = ORDER)) +
   geom_bar(stat = "identity", position = "stack")
+
+
+
+
+##THIS IS MY WORD ANALYSIS/EXPLANATION.
+# I am testing if birds are more present at certain times of the day. 
+# I think that birds will often be present and therefore observed more during times of daylight 
+# rather than night time. I also want to analyze if certain taxonomic orders are present at
+# different times than others. 
+# Overall, birds are generally more active and observed during times of daylight, especially in the late morning.
+# Bird observations prevalent throughout the morning and peak around noon. This could be explained by the fact that birds
+# may try to avoid the heat. 
+# Some orders of birds are most more prevalent than others according to the data. 
