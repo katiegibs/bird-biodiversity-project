@@ -13,3 +13,9 @@ ipeds_join |>
     color = "Academic Institutions",
     fill = "Academic Institutions",
     caption = "Data is from IPEDS and Ebird"
+
+
+
+This graph shows you the Density of observations Vs. the amerage amounts of impevious surfaces.
+Less impervious surfaces transates to more available natural habitats, increasing the density of observations of birds.
+This makes logical sense, more available habitats leads to more birds. With more birds, the density of observations rises.
