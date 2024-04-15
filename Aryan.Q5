@@ -1,0 +1,75 @@
+#The Carnegie Classification is a framework used to classify colleges and Universities in the United States.
+#The classification takes into account various factors such as research, degrees awarded, and other
+#characteristics. The classification system groups institutions into categories ranging from doctoral 
+#universities with the highest level of research activity to associates colleges with the lowest level of 
+#research activity. A higher score in the Carnegie Classification typically indicates a lower level of research 
+#activity or fewer resources devoted to research compared to institutions with lower scores
+
+#The hypothesis I will be testing is institutions with a lower Carnegie Classification (indicating a higher 
+#level of academic research and development) have a higher bird species richness. 
+
+#The reason I am looking at this hypothesis is because a higher Carnegie Classification from high-end research 
+#universities is indicative of a larger institution with more resources, land area, and potentially more 
+#emphasis on environmental sustainability and research. Additionally, these larger universities would also have more 
+#extensive campus grounds and green space that would be able to support a greater diversity of bird species. 
+#Conversely, smaller institutions, such as Associate Colleges, may have more limited resources and land area, 
+#potentially resulting in fewer natural habitats and lower
+
+philadelphia_colleges <- c(
+  "Lincoln Technical Institute, Center City and Northeast Philadelphia",
+  "Pennsylvania Institute of Technology, Center City and Media",
+  "Talmudical Yeshiva of Philadelphia",
+  "Temple University",
+  "Chestnut Hill College",
+  "Drexel University",
+  "Holy Family University",
+  "La Salle University",
+  "Moore College of Art and Design",
+  "Peirce College",
+  "Pennsylvania Academy of the Fine Arts",
+  "The Restaurant School at Walnut Hill College",
+  "Saint Joseph's University",
+  "Thomas Jefferson University",
+  "University of the Arts",
+  "University of Pennsylvania",
+  "Community College of Philadelphia",
+  "CurtisInstitute of Music",
+  "Hussain College School of Art",
+  "Jna Institute of Culinary Arts",
+  "Lincoln Technical Institute-Philadelphia",
+  "Moore College of Art and Design",
+  "Peirce College",
+  "Philadelphia College of Osteopathic Medicine",
+  "The Art Institute of Philadelphia",
+  "The University of the Arts",
+  "University of the Sciences"
+)
+
+filtered_schools <- ipeds_join |> 
+  filter(INSTNM %in% philadelphia_colleges)
+
+filtered_schools$school_factor <- as.factor(filtered_schools$INSTNM)
+
+ggplot(filtered_schools, aes(x = CARNEGIE, y = species_richness, color = school_factor)) +
+  geom_point(size = 4) +
+  geom_smooth (method = "lm", se = FALSE, color = "darkgray") +
+  scale_color_discrete(name = "Institution") +
+  labs(
+    x = "Carnegie Classification",
+    y = "Bird Species Richness",
+    title = "Bird Species Richness by Carnegie Classification in Philadelphia Institutions",
+    color = "Institution"
+  ) +
+  theme_minimal()
+
+#Accounting for impervious surface would result in a similar result as the Carnegie classification, as both
+#variables looks at how developed the schools are. This development also demonstrates how urbanization and 
+#and infrastructure can influence the characteristics of institutions. For example, schools with lower 
+#classifications (indicating higher research and in turn infrastructure), would also have a higher 
+#impervious surface. 
+
+#According to the final graph, the results do not support the hypothesis. There seems to be a positive
+#correlation to Carnegie classification and bird species richness. Schools like Temple University and 
+#University of Pennsylvania have lower classifications, which shows that they have more research activity.
+#They also have lower species richness, which probably could be due to the fact that they are bigger
+#institutions and have less green area.
