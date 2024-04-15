@@ -3,10 +3,13 @@ time_data <- ipeds_join |>
 
 # I converted the military times.
 time_data$TIME.OBSERVATIONS.STARTED <- as.POSIXct(time_data$TIME.OBSERVATIONS.STARTED, format = "%H:%M:%S")
+
 # And I extracted the hour from it. 
-time_data$hour <- strftime(time_data$TIME.OBSERVATIONS.STARTED, "%H")
-# I then replaced the "X"s with NAs. 
+time_data$hour <- strftime(time_data$TIME.OBSERVATIONS.STARTED, "%H", na.rm = TRUE)
+
+# I then replaced the "X"s with NAs in observation count. 
 time_data$OBSERVATION.COUNT[time_data$OBSERVATION.COUNT == "X"] <- NA 
+
 # I converted the OBSERVATION.COUNT column to numeric. 
 time_data$OBSERVATION.COUNT <- as.numeric(time_data$OBSERVATION.COUNT)
 
@@ -17,7 +20,13 @@ time_data |>
   group_by(hour) |>
   mutate(sum_observations = sum(OBSERVATION.COUNT, na.rm = TRUE)) |>
   ggplot(aes(x = hour, y = sum_observations)) +
-  geom_bar(stat = "identity") 
+  geom_bar(stat = "identity") + 
+  scale_y_log10() +
+  labs(
+    title = "Most birds appear in the morning",
+    x = "Hour",
+    y = "Total Observations"
+  )
 
 # Selecting the top 3 most common taxonomic orders within the dataset.
 
@@ -25,14 +34,23 @@ order_summary <- time_data |>
   group_by(ORDER, hour) |>
   summarise(tot_order_observations_hour = sum(OBSERVATION.COUNT, na.rm = TRUE)) |>
   ungroup()
-# Visualizing the top 3 most common taxomic orders.
+
+  
+# Visualizing the top 3 most common taxonomic orders.
 order_summary |>
   group_by(ORDER) |>
   mutate(total_order_counts = sum(tot_order_observations_hour, na.rm = TRUE)) |>
   arrange(desc(total_order_counts)) |>
-  filter(ORDER %in% c("Passeriformes", "Anseriformes", "Columbiformes")) |>
+  filter(ORDER %in% c("Passeriformes", "Anseriformes", "Columbiformes", "Charadriiformes", "Pelecaniformes")) |>
   ggplot(aes(x = hour, y = tot_order_observations_hour, fill = ORDER)) +
-  geom_bar(stat = "identity", position = "stack")
+  geom_bar(stat = "identity") + 
+  theme_bw() +
+  labs(
+    title = "Birds mostly appear in the morning",
+    x = "Hour",
+    y = "Total Count of Birds",
+    fill = "Taxonomic Order"
+  )
 
 
 
