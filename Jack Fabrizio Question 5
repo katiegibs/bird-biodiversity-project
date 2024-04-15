@@ -1,0 +1,14 @@
+ipeds_join |> 
+  filter(STABBR.x == "PA", CITY == "Philadelphia") |>   # Filtering data for Institutions in Philadelphia, Pennsylvania
+  filter(INSTNM %in% c("Saint Joseph's University", "Drexel University", "Temple University", "University of Pennsylvania", "University of the Sciences", "La Salle University")) |> 
+  ggplot(aes(x = mean_impervious, color = INSTNM)) +
+  geom_density(aes(fill = INSTNM), alpha = 0.2) +
+  labs(
+    title = "Average Impervious surfaces in Philadelphia, Pennsylvania",
+    subtitle = "Observations are made by specific academic institutions located in Philadelphia, Pennsylvania",
+    x = "Average Impervious Surfaces",
+    y = "Density of Observations",
+    color = "Academic Institutions",
+    fill = "Academic Institutions",
+    caption = "Data is from IPEDS and Ebird"
+  )
