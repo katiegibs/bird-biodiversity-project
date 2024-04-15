@@ -1,19 +1,20 @@
 #The Carnegie Classification is a framework used to classify colleges and Universities in the United States.
 #The classification takes into account various factors such as research, degrees awarded, and other
 #characteristics. The classification system groups institutions into categories ranging from doctoral 
-#universities with the highest level of research activity to associates colleges with the lowest level of 
+#universities with the highest level of research activity to associate colleges with the lowest level of 
 #research activity. A higher score in the Carnegie Classification typically indicates a lower level of research 
 #activity or fewer resources devoted to research compared to institutions with lower scores
 
-#The hypothesis I will be testing is institutions with a lower Carnegie Classification (indicating a higher 
+#The hypothesis I will be testing is institutions with a higher Carnegie Classification (indicating a lower 
 #level of academic research and development) have a higher bird species richness. 
 
-#The reason I am looking at this hypothesis is because a higher Carnegie Classification from high-end research 
-#universities is indicative of a larger institution with more resources, land area, and potentially more 
-#emphasis on environmental sustainability and research. Additionally, these larger universities would also have more 
-#extensive campus grounds and green space that would be able to support a greater diversity of bird species. 
-#Conversely, smaller institutions, such as Associate Colleges, may have more limited resources and land area, 
-#potentially resulting in fewer natural habitats and lower
+#The reason I am looking at this hypothesis is that a lower Carnegie Classification from high-end research 
+#universities is indicative of a larger institution with more resources and potentially more infrastructure to 
+#house research facilities. Additionally, these larger universities would most likely have more extensive campus 
+#grounds with a larger student body. This results in more urbanization and impervious surfaces that would not 
+#support a higher species richness. Conversely, smaller institutions, such as Associate Colleges and technical 
+#institutes, may have a smaller land area, potentially resulting in greater natural habitats and green spaces 
+#to support a higher species richness.
 
 philadelphia_colleges <- c(
   "Lincoln Technical Institute, Center City and Northeast Philadelphia",
@@ -62,14 +63,20 @@ ggplot(filtered_schools, aes(x = CARNEGIE, y = species_richness, color = school_
   ) +
   theme_minimal()
 
-#Accounting for impervious surface would result in a similar result as the Carnegie classification, as both
-#variables looks at how developed the schools are. This development also demonstrates how urbanization and 
-#and infrastructure can influence the characteristics of institutions. For example, schools with lower 
-#classifications (indicating higher research and in turn infrastructure), would also have a higher 
-#impervious surface. 
+#Accounting for impervious surfaces would likely yield results similar to the Carnegie classification, as both
+#variables are indicative of an institution's level of development. This development includes factors like the
+#school's infrastructure and facilities. Institutions with lower Carnegie classifications, focused on research,
+#tend to have larger impervious surface areas to accommodate research facilities. Schools with higher 
+#classifications would likely have less infrastructure due to a lesser focus on research, which in turn, would 
+#equate to a lower impervious surface.  
 
-#According to the final graph, the results do not support the hypothesis. There seems to be a positive
-#correlation to Carnegie classification and bird species richness. Schools like Temple University and 
-#University of Pennsylvania have lower classifications, which shows that they have more research activity.
-#They also have lower species richness, which probably could be due to the fact that they are bigger
-#institutions and have less green area.
+#According to the final graph, the results do support the hypothesis. There is a positive correlation between 
+#the Carnegie classification and bird species richness. In which the greater the classification score (indicating
+#little to no research being done), the higher the species richness. Schools like Temple University, Drexel 
+#University, and University of Pennsylvania have lower classification scores, which demonstrates that they have 
+#more research activity. They also have an overall lower species richness compared to other associate/technical 
+#schools like Peirce and Lincoln Technical Institute which have no research activity. This could possibly be due 
+#to the fact that these are smaller schools that have less infrastructure and a smaller student body, resulting in
+#less disturbances to natural habitats and more potential for natural green spaces that can support high species
+#richness. 
+
