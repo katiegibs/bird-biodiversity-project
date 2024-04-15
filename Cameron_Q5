@@ -1,6 +1,7 @@
 time_data <- ipeds_join |>
   select(TIME.OBSERVATIONS.STARTED, OBSERVATION.COUNT, OBSERVATION.DATE, ORDER, COMMON.NAME)
 
+
 # I converted the military times.
 time_data$TIME.OBSERVATIONS.STARTED <- as.POSIXct(time_data$TIME.OBSERVATIONS.STARTED, format = "%H:%M:%S")
 
@@ -38,6 +39,7 @@ order_summary <- time_data |>
   
 # Visualizing the top 3 most common taxonomic orders.
 order_summary |>
+  filter(!is.na(hour)) |>
   group_by(ORDER) |>
   mutate(total_order_counts = sum(tot_order_observations_hour, na.rm = TRUE)) |>
   arrange(desc(total_order_counts)) |>
