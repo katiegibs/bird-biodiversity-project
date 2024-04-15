@@ -1,6 +1,8 @@
 ipeds_join |> 
   filter(STABBR.x == "PA", CITY == "Philadelphia") |>   # Filtering data for Institutions in Philadelphia, Pennsylvania
   filter(INSTNM %in% c("Saint Joseph's University", "Drexel University", "Temple University", "University of Pennsylvania", "University of the Sciences", "La Salle University")) |> 
+  #These are the 6 schools we've consistently used for graphing and observation. They are all relatively near each other. Also, there is a wide range of campus ecosystems. 
+  #Temple and Drexel being largely concrete, while SJU and UPenn are relatively very Green campuses
   ggplot(aes(x = mean_impervious, color = INSTNM)) +
   geom_density(aes(fill = INSTNM), alpha = 0.2) +
   labs(
@@ -11,4 +13,3 @@ ipeds_join |>
     color = "Academic Institutions",
     fill = "Academic Institutions",
     caption = "Data is from IPEDS and Ebird"
-  )
