@@ -60,8 +60,7 @@ ggplot(filtered_schools, aes(x = CARNEGIE, y = species_richness, color = school_
     y = "Bird Species Richness",
     title = "Bird Species Richness by Carnegie Classification in Philadelphia Institutions",
     color = "Institution"
-  ) +
-  theme_minimal()
+  )
 
 #Accounting for impervious surfaces would likely yield results similar to the Carnegie classification, as both
 #variables are indicative of an institution's level of development. This development includes factors like the
