@@ -49,7 +49,7 @@ Question 5 ---------------------------------------------------------------------
 
 ipeds_join |> 
   filter(STABBR.x == "PA", CITY == "Philadelphia") |>   # Filtering data for Institutions in Philadelphia, Pennsylvania
-  filter(INSTNM %in% c("Saint Joseph's University", "Drexel University", "Temple University", "University of Pennsylvania", "University of the Sciences", "La Salle University")) |> 
+  filter(INSTNM %in% c("Saint Joseph's University", "Drexel University", "Temple University", "University of Pennsylvania", "University of the Sciences", "La Salle University")) |> # We selected these 6 schools because they are relatively large and have various environment types (e.g.Temple has mostly less trees, more architecture, etc.)
   ggplot(aes(x = species_richness, color = INSTNM)) +
   geom_density(aes(fill = INSTNM), alpha = 0.2) +
   labs(
@@ -62,8 +62,9 @@ ipeds_join |>
     caption = "Data is from IPEDS and Ebird"
   )
 
-# The hypothesis that we will be testing is how species richness is affected in Philadelphia, Pennsylvania. We are testing this hypothesis to observe what affects species richness, and if impervious surfaces also plays a role in the correlation with species richness.
+# The hypothesis that we will be testing is how species richness is affected in 6 relatively large universities in Philadelphia, Pennsylvania. We are testing this hypothesis to observe what affects species richness, and if impervious surfaces also plays a role in the correlation with species richness.
 # We predict that academic institutions that are located in urban areas, characterized by high population density and busy surroundings, will exhibit lower species richness.
 # From the plot shown, the 6 academic institutions exhibit low species richness ranging from 0 to 20, although Drexel University had high density of observations. Our
 # hypothesis is right, as the 6 academic institutions are primarily located in busy areas with limited land. Accounting for impervious surfaces might change the results, showing an increase of impervious surfaces reduces species richness. 
+# Although Drexel University has high density of observation, it has low species richness. This maybe due to same bird species that exist at Drexel. 
 
