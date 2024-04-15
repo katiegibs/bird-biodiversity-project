@@ -6,15 +6,15 @@
 #activity or fewer resources devoted to research compared to institutions with lower scores
 
 #The hypothesis I will be testing is institutions with a higher Carnegie Classification (indicating a lower 
-#level of academic research and development) have a higher bird species richness. 
+#level of academic research and development) have higher bird species richness. 
 
 #The reason I am looking at this hypothesis is that a lower Carnegie Classification from high-end research 
 #universities is indicative of a larger institution with more resources and potentially more infrastructure to 
 #house research facilities. Additionally, these larger universities would most likely have more extensive campus 
 #grounds with a larger student body. This results in more urbanization and impervious surfaces that would not 
-#support a higher species richness. Conversely, smaller institutions, such as Associate Colleges and technical 
-#institutes, may have a smaller land area, potentially resulting in greater natural habitats and green spaces 
-#to support a higher species richness.
+#support a higher species richness due to disturbances to natural habitats. Conversely, smaller institutions, 
+#such as Associate Colleges and technical institutes, may have a smaller land area, potentially resulting in 
+#greater natural habitats and green spaces to support higher species richness.
 
 philadelphia_colleges <- c(
   "Lincoln Technical Institute, Center City and Northeast Philadelphia",
@@ -75,8 +75,8 @@ ggplot(filtered_schools, aes(x = CARNEGIE, y = species_richness, color = school_
 #little to no research being done), the higher the species richness. Schools like Temple University, Drexel 
 #University, and University of Pennsylvania have lower classification scores, which demonstrates that they have 
 #more research activity. They also have an overall lower species richness compared to other associate/technical 
-#schools like Peirce and Lincoln Technical Institute which have no research activity. This could possibly be due 
-#to the fact that these are smaller schools that have less infrastructure and a smaller student body, resulting in
-#less disturbances to natural habitats and more potential for natural green spaces that can support high species
-#richness. 
+#schools like Peirce College and Lincoln Technical Institute which have no research activity. This could possibly 
+#be due to the fact that these are smaller schools that have less infrastructure and a smaller student body, 
+#resulting in fewer disturbances to natural habitats and more potential for natural green spaces that can 
+#accommodate higher species richness. 
 
